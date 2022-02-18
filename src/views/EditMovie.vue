@@ -16,7 +16,6 @@ export default {
   methods: {},
   created() {
     this.id = this.$route.params.id;
-    console.log(this.$route.params.id);
   },
 };
 </script>

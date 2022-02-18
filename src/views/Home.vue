@@ -60,7 +60,7 @@
             <v-card-title> {{ pelicula.nombre }}</v-card-title>
             <v-card-text> {{ pelicula.review }} </v-card-text>
             <v-card-text>
-              {{ pelicula.rating }}
+              <v-rating dense v-model="pelicula.rating" readonly></v-rating>
             </v-card-text>
             <v-card-actions>
               <v-row>
@@ -93,7 +93,7 @@ export default {
         id: null,
         nombre: "",
         anio: null,
-        rating: 0,
+        rating: 3,
         resumen: "",
       },
       peliculas: [],
@@ -157,7 +157,7 @@ export default {
     },
     verPelicula(id) {
       this.$router.push({
-        name: "Edit",
+        name: "ViewMovie",
         params: {
           id,
         },
