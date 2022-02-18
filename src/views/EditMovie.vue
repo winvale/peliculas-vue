@@ -82,7 +82,7 @@ export default {
     },
     async editarPelicula() {
       await fetch(
-        `http://localhost:1200/peliculas/edit/${this.$route.params.id}`,
+        `https://apiadmpelicula.herokuapp.com/peliculas/edit/${this.$route.params.id}`,
         {
           headers: {
             "Content-Type": "application/json",
