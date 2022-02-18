@@ -1,6 +1,17 @@
 <template>
   <div>
+    <v-container class="text-center">
+      <h1>Administrador de peliculas</h1>
+    </v-container>
     <v-container>
+      <v-row class="pt-12">
+        <v-textarea
+          height="40px"
+          label="Resumen de la pelicula"
+          v-model="nuevaPelicula.resumen"
+        >
+        </v-textarea>
+      </v-row>
       <v-row>
         <v-col>
           <v-text-field
@@ -32,13 +43,7 @@
           </v-container>
         </v-col>
       </v-row>
-      <v-row>
-        <v-textarea
-          height="100px"
-          label="Resumen de la pelicula"
-          v-model="nuevaPelicula.resumen"
-        ></v-textarea>
-      </v-row>
+
       <v-row>
         <v-col>
           <v-select
@@ -57,21 +62,27 @@
       <v-row v-for="(pelicula, index) in mostrarPeliculas" :key="index">
         <v-col>
           <v-card>
-            <v-card-title> {{ pelicula.nombre }}</v-card-title>
-            <v-card-text> {{ pelicula.review }} </v-card-text>
+            <v-card-title> {{ pelicula.nombre }} </v-card-title>
+            <v-card-text> {{ pelicula.resumen }} </v-card-text>
             <v-card-text>
               <v-rating dense v-model="pelicula.rating" readonly></v-rating>
             </v-card-text>
             <v-card-actions>
               <v-row>
                 <v-col>
-                  <v-btn @click="verPelicula(pelicula.id)">Ver</v-btn>
+                  <v-btn class="success" @click="verPelicula(pelicula.id)"
+                    >Ver</v-btn
+                  >
                 </v-col>
                 <v-col>
-                  <v-btn @click="editarPelicula(pelicula.id)">Editar</v-btn>
+                  <v-btn class="primary" @click="editarPelicula(pelicula.id)"
+                    >Editar</v-btn
+                  >
                 </v-col>
                 <v-col>
-                  <v-btn @click="eliminarPelicula(pelicula.id)">Eliminar</v-btn>
+                  <v-btn class="warning" @click="eliminarPelicula(pelicula.id)"
+                    >Eliminar</v-btn
+                  >
                 </v-col>
               </v-row>
             </v-card-actions>
@@ -93,7 +104,7 @@ export default {
         id: null,
         nombre: "",
         anio: null,
-        rating: 3,
+        rating: null,
         resumen: "",
       },
       peliculas: [],
@@ -158,6 +169,14 @@ export default {
     verPelicula(id) {
       this.$router.push({
         name: "ViewMovie",
+        params: {
+          id,
+        },
+      });
+    },
+    editarPelicula(id) {
+      this.$router.push({
+        name: "EditMovie",
         params: {
           id,
         },

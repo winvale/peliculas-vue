@@ -11,8 +11,8 @@ const routes = [
     component: Home,
   },
   {
-    path: "/editmovie",
-    name: "Edit",
+    path: "/editmovie/:id",
+    name: "EditMovie",
     component: () => import("../views/EditMovie.vue"),
   },
   {
