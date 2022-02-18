@@ -1,25 +1,14 @@
 <template>
   <div>
-    <v-container class="text-center">
-      <h1>Administrador de peliculas</h1>
-    </v-container>
     <v-container>
-      <v-row class="pt-12">
-        <v-textarea
-          height="40px"
-          label="Resumen de la pelicula"
-          v-model="nuevaPelicula.resumen"
-        >
-        </v-textarea>
-      </v-row>
       <v-row>
-        <v-col>
+        <v-col cols="4">
           <v-text-field
             v-model="nuevaPelicula.nombre"
             label="Ingrese nombre de nueva pelicula"
           ></v-text-field>
         </v-col>
-        <v-col>
+        <v-col cols="4">
           <v-text-field
             v-model="nuevaPelicula.anio"
             type="date"
@@ -27,20 +16,32 @@
           ></v-text-field>
         </v-col>
 
-        <v-col>
-          <v-container>
-            <v-btn
-              block
-              class="success"
-              @click="agregarPelicula()"
-              :disabled="
-                !nuevaPelicula.nombre ||
-                !nuevaPelicula.anio ||
-                !nuevaPelicula.resumen
-              "
-              >Agregar</v-btn
-            >
-          </v-container>
+        <v-col cols="4" class="text-center">
+          Calificacion
+          <v-rating v-model="nuevaPelicula.rating" />
+        </v-col>
+
+        <v-col cols="8" class="pt-8">
+          <v-textarea
+            height="40px"
+            label="Resumen de la pelicula"
+            v-model="nuevaPelicula.resumen"
+          >
+          </v-textarea>
+        </v-col>
+        <v-col cols="4">
+          <v-btn
+            block
+            class="success mt-4"
+            @click="agregarPelicula()"
+            :disabled="
+              !nuevaPelicula.nombre ||
+              !nuevaPelicula.anio ||
+              !nuevaPelicula.resumen ||
+              !nuevaPelicula.rating
+            "
+            >Agregar</v-btn
+          >
         </v-col>
       </v-row>
 
@@ -59,6 +60,7 @@
           ></v-text-field
         ></v-col>
       </v-row>
+
       <v-row v-for="(pelicula, index) in mostrarPeliculas" :key="index">
         <v-col>
           <v-card>
@@ -182,7 +184,6 @@ export default {
         },
       });
     },
-    qualifypelicula() {},
     limpiarFormulario() {
       this.nuevaPelicula.id = null;
       this.nuevaPelicula.nombre = "";
